@@ -1,12 +1,10 @@
 ﻿namespace ConsoleApp1
 {
-    internal class Wordle
+    internal class WordleDominicano
     {
-
         static void Main(string[] args)
         {
-            Console.WriteLine("Haremos el mejor juego del mundo");
-            string vInput = Console.ReadLine();
+            Console.WriteLine("Hello World");
         }
     }
 }
