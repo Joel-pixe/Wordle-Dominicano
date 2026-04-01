@@ -17,15 +17,23 @@
                 Console.WriteLine("- Letra en gris: letra no está en la palabra.");
             }
 
-            public void Juego()
+            public List<string> PalabrasPosibles = new List<string> { "FULLIN", "PALOMO","WAWAWA","PATRON","POPI","ASARAR" };
+            
+            public string GenerarPalabra()
             {
+                Random rnd = new Random();
 
+                int palabraSecreta = rnd.Next(0, PalabrasPosibles.Count);
+
+                return PalabrasPosibles[palabraSecreta];
             }
         }
 
         static void Main(string[] args)
         {
-            
+            JuegoWordle juego1 = new JuegoWordle(); 
+
+            Console.WriteLine(juego1.GenerarPalabra());
         }
     }
 }
