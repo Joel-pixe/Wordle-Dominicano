@@ -7,10 +7,16 @@
             public string palabraSecreta { get; }
             public int intentosMaximos = 6;
 
-            public void MsgInicial()
+            public JuegoWordle(string palabra, int intentos)
+            {
+                palabraSecreta = palabra;
+                intentosMaximos = intentos;
+            }
+
+            public void MsgInicial(string palabra)
             {
                 Console.WriteLine("¡Bienvenido a WordleMMG!");
-                Console.WriteLine($"Adivina la palabra de {palabraSecreta.Length} letras en {intentosMaximos} intentos.");
+                Console.WriteLine($"Adivina la palabra de {palabra.Length} letras en {intentosMaximos} intentos.");
                 Console.WriteLine("Después de cada intento, recibirás estas pistas:");
                 Console.WriteLine("- Letra en verde: letra correcta en la posición correcta.");
                 Console.WriteLine("- Letra en amarillo: letra correcta en la posición incorrecta.");
@@ -23,17 +29,21 @@
             {
                 Random rnd = new Random();
 
-                int palabraSecreta = rnd.Next(0, PalabrasPosibles.Count);
+                int palabra = rnd.Next(0, PalabrasPosibles.Count);
 
-                return PalabrasPosibles[palabraSecreta];
+                return PalabrasPosibles[palabra];
             }
         }
 
         static void Main(string[] args)
         {
-            JuegoWordle juego1 = new JuegoWordle(); 
+            string palabra = "";
+            JuegoWordle juego1 = new JuegoWordle(palabra , 6);
+            palabra = juego1.GenerarPalabra();
+            juego1.MsgInicial(palabra);
+            Console.ReadKey();
 
-            Console.WriteLine(juego1.GenerarPalabra());
+
         }
     }
 }
