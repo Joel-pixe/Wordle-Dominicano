@@ -12,10 +12,8 @@
             foreach (char p in palabra)
             {
                 lista.Add(p);
-            }
-
-
-            
+                // que frescura
+            } 
         }
     }
 }
