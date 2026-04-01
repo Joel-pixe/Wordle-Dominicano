@@ -4,7 +4,18 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            List<char> lista = new List<char>();
+
+            Console.WriteLine("Ingrese la palabra: ");
+            string palabra = Console.ReadLine();
+
+            foreach (char p in palabra)
+            {
+                lista.Add(p);
+            }
+
+
+            
         }
     }
 }
