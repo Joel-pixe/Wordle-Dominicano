@@ -13,14 +13,42 @@
                 intentosMaximos = intentos;
             }
 
+            public void ColorAzul(char mychar)
+            {
+                ConsoleColor colorOriginal = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(mychar);
+                Console.ForegroundColor = colorOriginal;
+            }
+
+            public void ColorBlanco(char mychar)
+            {
+                ConsoleColor colorOriginal = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(mychar);
+                Console.ForegroundColor = colorOriginal;
+            }
+
+            public void ColorRojo(char mychar)
+            {
+                ConsoleColor colorOriginal = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(mychar);
+                Console.ForegroundColor = colorOriginal;
+            }
+
             public void MsgInicial(string palabra)
             {
                 Console.WriteLine("¡Bienvenido a WordleMMG!");
+                Console.Write("\n");
                 Console.WriteLine($"Adivina la palabra de {palabra.Length} letras en {intentosMaximos} intentos.");
+                Console.Write("\n");
                 Console.WriteLine("Después de cada intento, recibirás estas pistas:");
+                Console.Write("\n");
                 Console.WriteLine("- Letra en azul: letra correcta en la posición correcta.");
-                Console.WriteLine("- Letra en rojo: letra correcta en la posición incorrecta.");
-                Console.WriteLine("- Letra en blanco: letra no está en la palabra.");
+                Console.WriteLine("- Letra en blanco: letra correcta en la posición incorrecta.");
+                Console.WriteLine("- Letra en rojo: letra no está en la palabra.");
+                Console.Write("\n");
             }
 
             public List<string> PalabrasPosibles = new List<string> { "FULLIN", "PALOMO","WAWAWA","PATRON","POPI","ASARAR" };
@@ -36,7 +64,7 @@
 
             public string ObtenerPalabra(string palabra)
             {
-                Console.WriteLine($"Ingrese una palabra de {palabra.Length} letras:");
+                Console.Write($"Ingrese una palabra de {palabra.Length} letras:");
                 string intento = Console.ReadLine().ToUpper();
                 
                 //Andy, aquí se podría agregar validación para asegurarse de que el intento tenga la longitud correcta, que solo contenga letras, etc.
@@ -48,17 +76,17 @@
             {
                 for (int i = 0; i < palabra.Length; i++)
                 {
-                    if (intento[i] == palabra[i]) //letra posicion correcta
+                    if (intento[i] == palabra[i])
                     {
-                        // intento[i] = azul
+                        ColorAzul(intento[i]);
                     }
                     else if (palabra.Contains(intento[i])) //letra posicion incorrecta
                     {
-                        // intento[i] = rojo
+                        ColorBlanco(intento[i]);
                     }
                     else
-                    { 
-                        //intento[i] = blanco
+                    {
+                        ColorRojo(intento[i]);
                     }
                 }
             }
@@ -70,6 +98,7 @@
             JuegoWordle juego1 = new JuegoWordle(palabra , 6);
             palabra = juego1.GenerarPalabra();
             juego1.MsgInicial(palabra);
+            juego1.EvaluarIntento(juego1.ObtenerPalabra(palabra), palabra);
             Console.ReadKey();
             //----------------------------------------------------
 
