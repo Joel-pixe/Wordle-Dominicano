@@ -122,7 +122,7 @@
                 ctd++;
             }
 
-            // Buen trabajo SWGOATS, solo nos falta colocar el manejo de excepciones
+            // Buen trabajo SWGOATS, solo nos falta colocar el manejo de excepcioness
 
             Console.ReadKey();
             //----------------------------------------------------
