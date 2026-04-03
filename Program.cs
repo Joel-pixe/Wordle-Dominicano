@@ -46,8 +46,8 @@
                 Console.WriteLine("Después de cada intento, recibirás estas pistas:");
                 Console.Write("\n");
                 Console.WriteLine("- Letra en azul: letra correcta en la posición correcta.");
-                Console.WriteLine("- Letra en blanco: letra correcta en la posición incorrecta.");
-                Console.WriteLine("- Letra en rojo: letra no está en la palabra.");
+                Console.WriteLine("- Letra en rojo: letra correcta en la posición incorrecta.");
+                Console.WriteLine("- Letra en blanco: letra no está en la palabra.");
                 Console.Write("\n");
             }
 
@@ -64,7 +64,7 @@
 
             public string ObtenerPalabra(string palabra)
             {
-                Console.Write($"Ingrese una palabra de {palabra.Length} letras:");
+                Console.Write($"Ingrese una palabra de {palabra.Length} letras: ");
                 string intento = Console.ReadLine().ToUpper();
                 
                 //Andy, aquí se podría agregar validación para asegurarse de que el intento tenga la longitud correcta, que solo contenga letras, etc.
@@ -82,11 +82,11 @@
                     }
                     else if (palabra.Contains(intento[i])) //letra posicion incorrecta
                     {
-                        ColorBlanco(intento[i]);
+                        ColorRojo(intento[i]);
                     }
                     else
                     {
-                        ColorRojo(intento[i]);
+                        ColorBlanco(intento[i]);
                     }
                 }
             }
@@ -95,10 +95,35 @@
         static void Main(string[] args)
         {
             string palabra = "";
+            int ctd = 0;
+            bool continuar = true;
+
             JuegoWordle juego1 = new JuegoWordle(palabra , 6);
             palabra = juego1.GenerarPalabra();
             juego1.MsgInicial(palabra);
-            juego1.EvaluarIntento(juego1.ObtenerPalabra(palabra), palabra);
+
+            while (ctd < 6 && continuar)
+            {
+                string intento = juego1.ObtenerPalabra(palabra);
+                juego1.EvaluarIntento(intento, palabra);
+                Console.Write("\n");
+                
+                if (intento == palabra)
+                {
+                    Console.WriteLine($"Eres ganador! La palabra era {palabra}");
+                    continuar = false;
+                }
+                if (ctd == 5)
+                {
+                    {
+                        Console.WriteLine($"Eres perdedor! La palabra correcta era {palabra}");
+                    }
+                }
+                ctd++;
+            }
+
+            // Buen trabajo SWGOATS, solo nos falta colocar el manejo de excepciones
+
             Console.ReadKey();
             //----------------------------------------------------
 
